@@ -11,8 +11,8 @@ public class EstadoAltAlgebric implements Estado{
 	// acoes sao matrizes de operacoes que mudam elementos de lugar
 	// um valor de -1 na posicao i muda o elemento i de lugar
 	List<Integer[]> acoes = new ArrayList<>();
-	// 1 quer dizer margem esquerda
-	// -1 quer dizer margem direita
+	// 1 quer dizer margem original
+	// -1 quer dizer margem destino
 	// posicoes: enum Elemento.java
 	//     0: Fazendeiro
 	//     1: Lobo
@@ -112,19 +112,19 @@ public class EstadoAltAlgebric implements Estado{
 	
 	@Override
 	public String toString() {
-		Set<Elemento> esquerdaMargem = new TreeSet<>();
-		Set<Elemento> direitaMargem = new TreeSet<>();
+		Set<Elemento> margemOriginal = new TreeSet<>();
+		Set<Elemento> margemDestino = new TreeSet<>();
 		for(Elemento e: Elemento.values()) {
 			if(estadoMatrix[e.ordinal()]==1)
-				esquerdaMargem.add(e);
+				margemOriginal.add(e);
 			else
-				direitaMargem.add(e);
+				margemDestino.add(e);
 		}
 		
 		
 		String res = "Estado Versao Aternativa Matrizes: \n";
-		res += "\t Esquerda " + esquerdaMargem + "\n";
-		res += "\t Direita " + direitaMargem + "\n";
+		res += "\t Margem Original " + margemOriginal + "\n";
+		res += "\t Margem Destino" + margemDestino + "\n";
 		return res;
 	}
 	

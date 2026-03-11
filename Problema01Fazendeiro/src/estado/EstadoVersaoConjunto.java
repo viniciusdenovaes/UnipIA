@@ -8,16 +8,16 @@ import java.util.TreeSet;
 
 public class EstadoVersaoConjunto implements Estado{
 	
-	Set<Elemento> esquerdaMargem = new TreeSet<>();
-	Set<Elemento> direitaMargem = new TreeSet<>();
+	Set<Elemento> margemOriginal = new TreeSet<>();
+	Set<Elemento> margemDestino = new TreeSet<>();
 	
 	EstadoVersaoConjunto(){
 	}
 	
-	EstadoVersaoConjunto(Set<Elemento> esquerda, Set<Elemento> direita){
+	EstadoVersaoConjunto(Set<Elemento> aMargemOriginal, Set<Elemento> aMargemDestino){
 		this();
-		esquerdaMargem = esquerda;
-		direitaMargem = direita;
+		margemOriginal = aMargemOriginal;
+		margemDestino = aMargemDestino;
 	}
 	
 	@Override
@@ -34,10 +34,10 @@ public class EstadoVersaoConjunto implements Estado{
 	@Override
 	public boolean isObjetivo() {
 		return (
-				direitaMargem.contains(Elemento.FAZENDEIRO)
-				&&  direitaMargem.contains(Elemento.LOBO)
-				&&  direitaMargem.contains(Elemento.CABRA)
-				&&  direitaMargem.contains(Elemento.REPOLHO)
+				margemDestino.contains(Elemento.FAZENDEIRO)
+				&&  margemDestino.contains(Elemento.LOBO)
+				&&  margemDestino.contains(Elemento.CABRA)
+				&&  margemDestino.contains(Elemento.REPOLHO)
 			);
 	}
 	
@@ -83,32 +83,32 @@ public class EstadoVersaoConjunto implements Estado{
 	}
 	
 	private Set<Elemento> getMargemF(){
-		if(esquerdaMargem.contains(Elemento.FAZENDEIRO))
-			return esquerdaMargem;
+		if(margemOriginal.contains(Elemento.FAZENDEIRO))
+			return margemOriginal;
 		else
-			return direitaMargem;
+			return margemDestino;
 	}
 	
 	private Set<Elemento> getMargemOutra(){
-		if(esquerdaMargem.contains(Elemento.FAZENDEIRO))
-			return direitaMargem;
+		if(margemOriginal.contains(Elemento.FAZENDEIRO))
+			return margemDestino;
 		else
-			return esquerdaMargem;
+			return margemOriginal;
 	}
 	
 	@Override
 	public EstadoVersaoConjunto deepCopy() {
-		var esquerda = new TreeSet<>(esquerdaMargem);
-		var direita = new TreeSet<>(direitaMargem);
-		return new EstadoVersaoConjunto(esquerda, direita);
+		var margemOriginalCopy = new TreeSet<>(margemOriginal);
+		var margemDestinoCopy = new TreeSet<>(margemDestino);
+		return new EstadoVersaoConjunto(margemOriginalCopy, margemDestinoCopy);
 		
 	}
 	
 	@Override
 	public String toString() {
 		String res = "Estado Versao Conjunto: \n";
-		res += "\t Esquerda " + esquerdaMargem + "\n";
-		res += "\t Direita " + direitaMargem + "\n";
+		res += "\t Margem Original " + margemOriginal + "\n";
+		res += "\t Margem Destino" + margemDestino + "\n";
 		return res;
 	}
 	
