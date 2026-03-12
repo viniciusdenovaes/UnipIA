@@ -11,7 +11,7 @@ public class EstadoVersaoConjunto implements Estado{
 	Set<Elemento> margemOriginal = new TreeSet<>();
 	Set<Elemento> margemDestino = new TreeSet<>();
 	
-	EstadoVersaoConjunto(){
+	public EstadoVersaoConjunto(){
 	}
 	
 	EstadoVersaoConjunto(Set<Elemento> aMargemOriginal, Set<Elemento> aMargemDestino){
@@ -22,13 +22,13 @@ public class EstadoVersaoConjunto implements Estado{
 	
 	@Override
 	public Estado getEstadoInicial() {
-		Set<Elemento> esquerda = new TreeSet<>() ;
-		esquerda.add(Elemento.FAZENDEIRO);
-		esquerda.add(Elemento.LOBO);
-		esquerda.add(Elemento.CABRA);
-		esquerda.add(Elemento.REPOLHO);
-		Set<Elemento> direita = new TreeSet<>();
-		return new EstadoVersaoConjunto(esquerda, direita);
+		Set<Elemento> margemOriginal = new TreeSet<>() ;
+		margemOriginal.add(Elemento.FAZENDEIRO);
+		margemOriginal.add(Elemento.LOBO);
+		margemOriginal.add(Elemento.CABRA);
+		margemOriginal.add(Elemento.REPOLHO);
+		Set<Elemento> margemDestino = new TreeSet<>();
+		return new EstadoVersaoConjunto(margemOriginal, margemDestino);
 	}
 	
 	@Override
@@ -71,8 +71,8 @@ public class EstadoVersaoConjunto implements Estado{
 			margemFilhoOutra.add(elemento.FAZENDEIRO);
 			margemFilhoOutra.add(elemento);
 			
-			System.out.println("Filho gerado " +  filho);
-			System.out.println("Filho valido? " +  filho.isValido());
+			//System.out.println("Filho gerado " +  filho);
+			//System.out.println("Filho valido? " +  filho.isValido());
 			
 			if(filho.isValido()) filhos.add(filho);
 			

@@ -2,7 +2,7 @@ package estado;
 
 import java.util.Collection;
 
-interface Estado {
+public interface Estado {
 	
 	public Estado getEstadoInicial();
 

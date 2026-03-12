@@ -29,7 +29,7 @@ public class EstadoAltAlgebric implements Estado{
 	@Override
 	public boolean isObjetivo() {
 		for(int p : this.estadoMatrix)
-			if(p==1)
+			if(p==-1)
 				return false;
 		return true;
 	}
