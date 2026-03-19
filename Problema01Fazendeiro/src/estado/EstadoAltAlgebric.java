@@ -1,8 +1,10 @@
 package estado;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,6 +21,7 @@ public class EstadoAltAlgebric implements Estado{
 	//     2: Cabra
 	//     3: Repolho
 	int[] estadoMatrix = {1, 1, 1, 1}; 
+	List<String> solutionStep = new ArrayList<String>();
 	public EstadoAltAlgebric() {
 	}
 
@@ -106,8 +109,19 @@ public class EstadoAltAlgebric implements Estado{
 		
 		eCopy.acoes = new ArrayList<>(acoes);
 		eCopy.estadoMatrix = estadoMatrix.clone();
+		eCopy.solutionStep = new ArrayList<>(solutionStep); 
 		
 		return eCopy;
+	}
+	@Override
+	public List<String> getSolution() {
+		return solutionStep;
+	}
+
+	@Override
+	public void addStep(String step) {
+		solutionStep.add(step);
+		
 	}
 	
 	@Override
@@ -125,9 +139,35 @@ public class EstadoAltAlgebric implements Estado{
 		String res = "Estado Versao Aternativa Matrizes: \n";
 		res += "\t Margem Original " + margemOriginal + "\n";
 		res += "\t Margem Destino" + margemDestino + "\n";
+		res += "\t Solution step:\n";
+		for(String s: solutionStep)
+			res += "\t\t" + s + "\n";
 		return res;
 	}
 	
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(estadoMatrix);
+		result = prime * result + Objects.hash(acoes);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EstadoAltAlgebric other = (EstadoAltAlgebric) obj;
+		return Objects.equals(acoes, other.acoes) && Arrays.equals(estadoMatrix, other.estadoMatrix);
+	}
 
 	public static void main(String[] args) {
 		Estado ei = new EstadoAltAlgebric().getEstadoInicial();
