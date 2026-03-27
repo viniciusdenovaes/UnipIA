@@ -1,6 +1,6 @@
 package solver.instance;
 
-import struct.Graph;
+import estruturas_dados.grafos.Graph;
 
 public class Instance {
 	

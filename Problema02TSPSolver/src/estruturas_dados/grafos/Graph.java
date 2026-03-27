@@ -1,4 +1,4 @@
-package struct;
+package estruturas_dados.grafos;
 
 import java.util.Map;
 import java.util.Map.Entry;

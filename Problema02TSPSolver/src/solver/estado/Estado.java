@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+import estruturas_dados.grafos.Graph;
 import solver.instance.Instance;
-import struct.Graph;
 
 public class Estado {
 	

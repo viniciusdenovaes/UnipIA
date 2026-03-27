@@ -1,4 +1,4 @@
-package struct;
+package estruturas_dados.grafos;
 
 public class Coord {
 	

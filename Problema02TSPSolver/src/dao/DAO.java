@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import estruturas_dados.grafos.Graph;
 import solver.instance.Instance;
 import solver.instance.Instance.EDGE_WEIGHT_FORMAT;
 import solver.instance.Instance.EDGE_WEIGHT_TYPE;
-import struct.Graph;
 
 public class DAO {
 	
